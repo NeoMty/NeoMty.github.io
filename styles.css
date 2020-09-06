@@ -1,0 +1,67 @@
+body {
+    background-color: #2274a5;
+    font-family: 'Kumbh Sans', sans-serif;
+    margin: 0;
+    color: white;
+}
+
+header, main {
+    margin-left: 25vw;
+    padding: 2vw;
+}
+
+#Home {
+    background-color: #679436;
+    height: 100vh;
+    width: 100vw;
+}
+
+#About {
+    background-color: #2274a5;
+    height: 100vh;
+    width: 100vw;
+}
+
+#Education {
+    background-color: #679436;
+    height: 100vh;
+    width: 100vw;
+}
+
+#Experience {
+    background-color: #2274a5;
+    height: 100vh;
+    width: 100vw;
+}
+
+#Projects {
+    background-color: #679436;
+    height: 100vh;
+    width: 100vw;
+}
+
+#Skills {
+    background-color: #2274a5;
+    height: 100vh;
+    width: 100vw;
+}
+
+nav {
+    background-color: black;
+    height: 100vh;
+    width: 25vw;
+    position: fixed;
+}
+
+h1 {
+    margin: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}

@@ -9,7 +9,7 @@ const Plane = ({isRotating, ...props}) => {
     const { scene, animations } = useGLTF(planeScene)
     const { actions } = useAnimations(animations, ref)
 
-    useRef(() => {
+    useEffect(() => {
         if (isRotating) {
             actions['Take 001'].play()
         } else {

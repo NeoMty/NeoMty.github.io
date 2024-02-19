@@ -13,9 +13,145 @@ import { a } from '@react-spring/three'
 
 import islandScene from '../assets/3d/island.glb';
 
-const Island = (props) => {
+const Island = ({ isRotating, setIsRotating, setCurrentStage, ...props }) => {
     const islandRef = useRef();
+
+    const { gl, viewport } = useThree();
     const { nodes, materials } = useGLTF(islandScene);
+
+    {/* Used to get the last position of the mouse pointer and set the rotation speed */ }
+    const lastX = useRef(0);
+    const rotationSpeed = useRef(0);
+    const dampingFactor = 0.95;
+
+    {/* The action to execute when the mouse or phone device is clicked */ }
+    const handlePointerDown = (e) => {
+        {/* Ensure the mouse only do what it is dictated in this function */ }
+        e.stopPropagation();
+
+        {/* Ensure that page won't reload or anything related */ }
+        e.preventDefault();
+        setIsRotating(true);
+
+        {/* Determine whether the click is from a phone device or a computer */ }
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+        {/* Store the last position of the X */ }
+        lastX.current = clientX;
+    }
+
+    {/* The action to execute when the mouse or phone device stops being clicked */ }
+    const handlePointerUp = (e) => {
+        {/* Ensure the mouse only do what it is dictated in this function */ }
+        e.stopPropagation();
+
+        {/* Ensure that page won't reload or anything related */ }
+        e.preventDefault();
+        setIsRotating(false);
+    }
+
+    {/* The action to execute when the mouse or phone device pointer is moving */ }
+    const handlePointerMove = (e) => {
+        {/* Ensure the mouse only do what it is dictated in this function */ }
+        e.stopPropagation();
+
+        {/* Ensure that page won't reload or anything related */ }
+        e.preventDefault();
+
+        if (isRotating) {
+            {/* Determine whether the click is from a phone device or a computer */ }
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+
+            {/* Calculate the change in the horizontal position */ }
+            const delta = (clientX - lastX.current) / viewport.width;
+
+            {/* Update the rotation based on the position */ }
+            islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+            lastX.current = clientX;
+            rotationSpeed.current = delta * 0.01 * Math.PI;
+        }
+    }
+
+    {/* Update the rotation when the arrow left or arrow right key is pressed */ }
+    const handleKeyDown = (e) => {
+        if (e.key === 'ArrowLeft') {
+
+            if (!isRotating) {
+                setIsRotating(true);
+            }
+
+            islandRef.current.rotation.y += 0.01 * Math.PI;
+        } else if (e.key === 'ArrowRight') {
+            if (!isRotating) {
+                setIsRotating(true);
+            }
+            islandRef.current.rotation.y -= 0.01 * Math.PI;
+        }
+    }
+
+    {/* Stop rotating when the arrow left or arrow right key stops being pressed */ }
+    const handleKeyUp = (e) => {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            setIsRotating(false);
+        }
+    }
+
+    useFrame(() => {
+        {/* Update the rotation speed of the plane based on the damping factor 
+        when the island is not rotating */ }
+        if (!isRotating) {
+            rotationSpeed.current *= dampingFactor;
+
+            if (Math.abs(rotationSpeed.current) < 0.001) {
+                rotationSpeed.current = 0;
+            }
+
+            islandRef.current.rotation.y += rotationSpeed.current;
+        } else {
+            const rotation = islandRef.current.rotation.y;
+
+            const normalizedRotation =
+                ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+
+            // Set the current stage based on the island's orientation
+            switch (true) {
+                case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+                    setCurrentStage(4);
+                    break;
+                case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+                    setCurrentStage(3);
+                    break;
+                case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+                    setCurrentStage(2);
+                    break;
+                case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+                    setCurrentStage(1);
+                    break;
+                default:
+                    setCurrentStage(null);
+            }
+        }
+    })
+
+    {/* Add click and key events and remove from the canvas once the user exits the page */ }
+    useEffect(() => {
+        const canvas = gl.domElement;
+
+        canvas.addEventListener('pointerdown', handlePointerDown);
+        canvas.addEventListener('pointerup', handlePointerUp);
+        canvas.addEventListener('pointermove', handlePointerMove);
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        return () => {
+            canvas.removeEventListener('pointerdown', handlePointerDown);
+            canvas.removeEventListener('pointerup', handlePointerUp);
+            canvas.removeEventListener('pointermove', handlePointerMove);
+            document.removeEventListener('keydown', handleKeyDown);
+            document.removeEventListener('keyup', handleKeyUp);
+        }
+    }, [gl, handlePointerDown, handlePointerUp, handlePointerMove])
+
     return (
         <a.group ref={islandRef} {...props}>
             <mesh

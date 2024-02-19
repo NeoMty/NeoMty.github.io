@@ -6,7 +6,7 @@ const App = () => {
   {/* The app contains the routes to all the pages in the website. The navigation is handle by the navbar component. Each
   route has a prop that contains its corresponding page */}
   return (
-    <main className='bg-slate-300/20'>
+    <main className='bg-slate-300/20 h-[100vh]'>
         <Router>
             <Navbar />
             <Routes>

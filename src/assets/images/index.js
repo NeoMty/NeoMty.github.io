@@ -1,15 +1,19 @@
 import hero from './hero.jpg'
-import meta from './meta.png'
-import shopify from './shopify.png'
-import starbucks from './starbucks.png'
-import tesla from './tesla.png'
+import silma from './silma.png'
+import itesm from './itesm.svg'
+import equilibrium from './equilibrium.png'
+import fugas from './fugas.png'
+import gruporeforma from './gruporeforma.jpg'
+import famai from './famai.png'
 import logo from './logo.svg'
 
 export {
     hero,
-    meta,
-    shopify,
-    starbucks,
-    tesla,
+    silma,
+    itesm,
+    equilibrium,
+    fugas,
+    gruporeforma,
+    famai,
     logo
 }

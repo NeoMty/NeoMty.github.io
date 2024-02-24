@@ -14,6 +14,19 @@ import redux from './redux.svg'
 import sass from './sass.svg'
 import tailwindcss from './tailwindcss.svg'
 import typescript from './typescript.svg'
+import cpp from './cpp.svg'
+import java from './java.svg'
+import python from './python.svg'
+import cs from './cs.svg'
+import swift from './swift.svg'
+import androidstudio from './androidstudio.svg'
+import unity from './unity.svg'
+import sqlserver from './sqlserver.svg'
+import kotlin from './kotlin.svg'
+import mobile from './mobile.svg'
+import bracketscurly from './bracketscurly.svg'
+import books from './books.svg'
+import chat from './chat.svg'
 import linkedin from './linkedin.svg'
 import twitter from './twitter.svg'
 import car from './car.svg'
@@ -44,6 +57,19 @@ export {
     sass,
     tailwindcss,
     typescript,
+    cpp,
+    java,
+    python,
+    cs,
+    swift,
+    androidstudio,
+    unity,
+    sqlserver,
+    kotlin,
+    mobile,
+    bracketscurly,
+    books,
+    chat,
     linkedin,
     twitter,
     car,

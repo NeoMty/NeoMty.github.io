@@ -25,8 +25,7 @@ const renderContent = {
     ),
     2: (
         <InfoBox
-            text="Graduated from the university Tecnológico de Monterrey and 
-            picked up a passion for software development"
+            text="Graduated from the university Tecnológico de Monterrey and picked up a passion for software development"
             link="/about"
             btnText="Learn more"
         />

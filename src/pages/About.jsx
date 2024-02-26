@@ -13,8 +13,8 @@ const About = () => {
       </h1>
 
       <div className='mt-5 flex flex-col gap-3 text-slate-500'>
-        <p>I'm a software engineer studying at Tecnológico de Monterrey
-          who has experience with technologies like React, SwiftUI, Kotlin,
+        <p>I'm a software engineer who graduated from Tecnológico de Monterrey, 
+          and who has experience with technologies like React, SwiftUI, Kotlin,
           Python 3, C++, C# and others. I always like to learn new technologies
           and working with other people to solve complex problems of the real
           world through use of programming. Let's create our story together using

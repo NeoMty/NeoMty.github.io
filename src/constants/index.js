@@ -256,5 +256,12 @@ export const projects = [
         name: 'Famai',
         description: 'A search engine which reads a file coming of multiple file sources and can make a search of crucial information to optimize processes.',
         link: 'https://devpost.com/software/famai',
+    },
+    {
+        iconUrl: chat,
+        theme: 'btn-back-orange',
+        name: 'Grupo Reforma - Sierra Madre',
+        description: 'App developed with Android Studio, Kotlin and Java. It is a magazine app where a user can explore the latest gossip related to the community Sierra Madre. The user can read the articles in a format for a mobile device or in a format resembling reading a physical magazine.',
+        link: 'https://play.google.com/store/apps/details?id=com.gruporeforma.sm&hl=es&gl=US',
     }
 ];

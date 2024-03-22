@@ -258,7 +258,7 @@ export const projects = [
         link: 'https://devpost.com/software/famai',
     },
     {
-        iconUrl: chat,
+        iconUrl: mobile,
         theme: 'btn-back-orange',
         name: 'Grupo Reforma - Sierra Madre',
         description: 'App developed with Android Studio, Kotlin and Java. It is a magazine app where a user can explore the latest gossip related to the community Sierra Madre. The user can read the articles in a format for a mobile device or in a format resembling reading a physical magazine.',
